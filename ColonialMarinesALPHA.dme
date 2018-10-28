@@ -39,6 +39,7 @@
 #include "code\__HELPERS\global_lists.dm"
 #include "code\__HELPERS\icons.dm"
 #include "code\__HELPERS\lists.dm"
+#include "code\__HELPERS\localisation.dm"
 #include "code\__HELPERS\mobs.dm"
 #include "code\__HELPERS\names.dm"
 #include "code\__HELPERS\sanitize_values.dm"
@@ -1482,5 +1483,4 @@
 #include "maps\Z.02.Admin_Level.dmm"
 #include "maps\Z.03.USS_Almayer.dmm"
 #include "maps\Z.04.Low_Orbit.dmm"
-#include "ru_branch\__HELPERS\localisation.dm"
 // END_INCLUDE
