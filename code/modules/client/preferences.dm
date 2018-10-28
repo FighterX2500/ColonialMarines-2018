@@ -915,16 +915,16 @@ datum/preferences
 					ShowChoices(user)
 					return
 				if("general")
-					var/msg = input(usr,"Give a physical description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					var/msg = input(usr,"Give a physical description of your character. This will be shown regardless of clothing.","Flavor Text",lhtml_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
 						msg = copytext(msg, 1, 256)
-						msg = html_encode(msg)
+						msg = lhtml_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 				else
-					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",html_decode(flavor_texts[href_list["task"]])) as message
+					var/msg = input(usr,"Set the flavor text for your [href_list["task"]].","Flavor Text",lhtml_decode(flavor_texts[href_list["task"]])) as message
 					if(msg != null)
 						msg = copytext(msg, 1, 256)
-						msg = html_encode(msg)
+						msg = lhtml_encode(msg)
 					flavor_texts[href_list["task"]] = msg
 			SetFlavorText(user)
 			return
@@ -938,40 +938,40 @@ datum/preferences
 
 			switch(href_list["task"])
 				if("med_record")
-					var/medmsg = input(usr,"Set your medical notes here.","Medical Records",html_decode(med_record)) as message
+					var/medmsg = input(usr,"Set your medical notes here.","Medical Records",lhtml_decode(med_record)) as message
 
 					if(medmsg != null)
 						medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						medmsg = html_encode(medmsg)
+						medmsg = lhtml_encode(medmsg)
 
 						med_record = medmsg
 						SetRecords(user)
 
 				if("sec_record")
-					var/secmsg = input(usr,"Set your security notes here.","Security Records",html_decode(sec_record)) as message
+					var/secmsg = input(usr,"Set your security notes here.","Security Records",lhtml_decode(sec_record)) as message
 
 					if(secmsg != null)
 						secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						secmsg = html_encode(secmsg)
+						secmsg = lhtml_encode(secmsg)
 
 						sec_record = secmsg
 						SetRecords(user)
 				if("gen_record")
-					var/genmsg = input(usr,"Set your employment notes here.","Employment Records",html_decode(gen_record)) as message
+					var/genmsg = input(usr,"Set your employment notes here.","Employment Records",lhtml_decode(gen_record)) as message
 
 					if(genmsg != null)
 						genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						genmsg = html_encode(genmsg)
+						genmsg = lhtml_encode(genmsg)
 
 						gen_record = genmsg
 						SetRecords(user)
 
 				if("exploitable_record")
-					var/exploitmsg = input(usr,"Set exploitable information about you here.","Exploitable Information",html_decode(exploit_record)) as message
+					var/exploitmsg = input(usr,"Set exploitable information about you here.","Exploitable Information",lhtml_decode(exploit_record)) as message
 
 					if(exploitmsg != null)
 						exploitmsg = copytext(exploitmsg, 1, MAX_PAPER_MESSAGE_LEN)
-						exploitmsg = html_encode(exploitmsg)
+						exploitmsg = lhtml_encode(exploitmsg)
 
 						exploit_record = exploitmsg
 						SetAntagoptions(user)
@@ -1153,7 +1153,7 @@ datum/preferences
 
 					if (new_body_type)
 						body_type = new_body_type
-				
+
 				if("species")
 					var/new_species = input(user, "Choose your species:", "Character Preferences") as null|anything in get_playable_species()
 					if(new_species && is_alien_whitelisted(new_species))
@@ -1229,11 +1229,11 @@ datum/preferences
 					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in backbaglist
 					if(new_backbag)
 						backbag = backbaglist.Find(new_backbag)
-				
+
 				if("moth_wings")
 					if(species == "Moth")
 						var/new_wings = input(user, "Choose your character's wings: ", "Character Preferences") as null|anything in (moth_wings_list - "Burnt Off")
-						
+
 						if(new_wings)
 							moth_wings = new_wings
 

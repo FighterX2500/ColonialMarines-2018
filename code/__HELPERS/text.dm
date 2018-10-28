@@ -53,17 +53,17 @@
 
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
-	return html_encode(sanitize_simple(t,repl_chars))
+	return lhtml_encode(sanitize_simple(t,repl_chars))
 
 //Runs sanitize and strip_html_simple
-//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's html_encode()
+//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' after sanitize() calls byond's lhtml_encode()
 /proc/strip_html(var/t,var/limit=MAX_MESSAGE_LEN)
 	return copytext((sanitize(strip_html_simple(t))),1,limit)
 
 //Runs byond's sanitization proc along-side strip_html_simple
-//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that html_encode() would cause
+//I believe strip_html_simple() is required to run first to prevent '<' from displaying as '&lt;' that lhtml_encode() would cause
 /proc/adminscrub(var/t,var/limit=MAX_MESSAGE_LEN)
-	return copytext((html_encode(strip_html_simple(t))),1,limit)
+	return copytext((lhtml_encode(strip_html_simple(t))),1,limit)
 
 
 //Returns null if there is any bad text in the string
@@ -82,12 +82,12 @@
 // Used to get a sanitized input.
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default) as text|null
-	return html_encode(trim(name, max_length))
+	return lhtml_encode(trim(name, max_length))
 
 // Used to get a properly sanitized multiline input, of max_length
 /proc/stripped_multiline_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default) as message|null
-	return html_encode(trim(name, max_length))
+	return lhtml_encode(trim(name, max_length))
 
 //Filters out undesirable characters from names
 /proc/reject_bad_name(var/t_in, var/allow_numbers=0, var/max_length=MAX_NAME_LEN)
@@ -252,7 +252,7 @@ proc/checkhtml(var/t)
 
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(var/t as text)
-	return uppertext(copytext(t, 1, 2)) + copytext(t, 2)
+	return uppertext_alt((copytext(t, 1, 2)) + copytext(t, 2)
 
 //Centers text by adding spaces to either side of the string.
 /proc/dd_centertext(message, length)
