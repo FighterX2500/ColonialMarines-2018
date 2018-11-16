@@ -121,7 +121,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
-	
+
 	if(config.log_world_topic)
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
@@ -237,7 +237,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
+	join_motd = sanitize_local(file2text("config/motd.txt"))
 
 /proc/load_configuration()
 	config = new /datum/configuration()

@@ -87,6 +87,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 	// Species specific
 var/global/list/moth_wings_list = list()
 // var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
+var/global/list/localisation = list()
 
 //////////////////////////
 /////Initial Building/////
@@ -117,7 +118,7 @@ var/global/list/moth_wings_list = list()
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
-	
+
 	// Species specific
 	for(var/path in subtypesof(/datum/sprite_accessory/moth_wings))
 		var/datum/sprite_accessory/moth_wings/wings = new path()
@@ -174,6 +175,11 @@ var/global/list/moth_wings_list = list()
 		var/datum/ammo/A = new t
 		ammo_list[A.type] = A
 	return 1
+
+	// Local Letters
+	for(var/T in subtypesof(/datum/letter))
+		var/datum/letter/L = new T
+		localisation += L
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()
